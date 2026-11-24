@@ -1850,23 +1850,23 @@ function App() {
         {...listeners}
       >
         {/* 链接内容 - 移除a标签，改为div防止点击跳转 */}
-        <div className={`flex flex-1 min-w-0 overflow-hidden ${
+        <div className={`flex flex-1 min-w-0 overflow-hidden w-full ${
           isDetailedView ? 'flex-col' : 'items-center gap-3'
         }`}>
           {/* 第一行：图标和标题水平排列 */}
-          <div className={`flex items-center gap-3 mb-2 ${
-            isDetailedView ? '' : 'w-full'
+          <div className={`flex gap-3 mb-2 w-full ${
+            isDetailedView ? 'items-start' : 'items-center'
           }`}>
             {/* Icon */}
             <div className={`text-blue-600 dark:text-blue-400 flex items-center justify-center text-sm font-bold uppercase shrink-0 ${
-              isDetailedView ? 'w-8 h-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800' : 'w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-700'
+              isDetailedView ? 'w-8 h-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 mt-0.5' : 'w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-700'
             }`}>
                 {link.icon ? <img src={link.icon} alt="" className="w-5 h-5"/> : link.title.charAt(0)}
             </div>
             
             {/* 标题 */}
-            <h3 className={`text-slate-900 dark:text-slate-100 truncate overflow-hidden text-ellipsis ${
-              isDetailedView ? 'text-base' : 'text-sm font-medium text-slate-800 dark:text-slate-200'
+            <h3 className={`text-slate-900 dark:text-slate-100 flex-1 min-w-0 ${
+              isDetailedView ? 'text-base font-semibold leading-snug break-words break-all' : 'text-sm font-medium text-slate-800 dark:text-slate-200 truncate'
             }`} title={link.title}>
                 {link.title}
             </h3>
@@ -1874,7 +1874,7 @@ function App() {
           
           {/* 第二行：描述文字 */}
              {isDetailedView && link.description && (
-               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed break-words break-all">
                  {link.description}
                </p>
              )}
@@ -1914,21 +1914,23 @@ function App() {
       >
         {/* 链接内容 - 在批量编辑模式下不使用a标签 */}
         {isBatchEditMode ? (
-          <div className={`flex flex-1 min-w-0 overflow-hidden h-full ${
+          <div className={`flex flex-1 min-w-0 overflow-hidden h-full w-full ${
             isDetailedView ? 'flex-col' : 'items-center'
           }`}>
             {/* 第一行：图标和标题水平排列 */}
-            <div className={`flex items-center gap-3 w-full`}>
+            <div className={`flex gap-3 w-full ${
+              isDetailedView ? 'items-start mb-2' : 'items-center'
+            }`}>
               {/* Icon */}
               <div className={`text-blue-600 dark:text-blue-400 flex items-center justify-center text-sm font-bold uppercase shrink-0 ${
-                isDetailedView ? 'w-8 h-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800' : 'w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-700'
+                isDetailedView ? 'w-8 h-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 mt-0.5' : 'w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-700'
               }`}>
                   {link.icon ? <img src={link.icon} alt="" className="w-5 h-5"/> : link.title.charAt(0)}
               </div>
               
               {/* 标题 */}
-              <h3 className={`text-slate-900 dark:text-slate-100 truncate overflow-hidden text-ellipsis ${
-                isDetailedView ? 'text-base' : 'text-sm font-medium text-slate-800 dark:text-slate-200'
+              <h3 className={`text-slate-900 dark:text-slate-100 flex-1 min-w-0 ${
+                isDetailedView ? 'text-base font-semibold leading-snug break-words break-all' : 'text-sm font-medium text-slate-800 dark:text-slate-200 truncate'
               }`} title={link.title}>
                   {link.title}
               </h3>
@@ -1936,7 +1938,7 @@ function App() {
             
             {/* 第二行：描述文字 */}
             {isDetailedView && link.description && (
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed break-words break-all">
                 {link.description}
               </p>
             )}
@@ -1946,23 +1948,25 @@ function App() {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex flex-1 min-w-0 overflow-hidden h-full ${
+            className={`flex flex-1 min-w-0 overflow-hidden h-full w-full ${
               isDetailedView ? 'flex-col' : 'items-center'
             }`}
             title={isDetailedView ? link.url : (link.description || link.url)} // 详情版视图只显示URL作为tooltip
           >
             {/* 第一行：图标和标题水平排列 */}
-            <div className={`flex items-center gap-3 w-full`}>
+            <div className={`flex gap-3 w-full ${
+              isDetailedView ? 'items-start mb-2 pr-7' : 'items-center'
+            }`}>
               {/* Icon */}
               <div className={`text-blue-600 dark:text-blue-400 flex items-center justify-center text-sm font-bold uppercase shrink-0 ${
-                isDetailedView ? 'w-8 h-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800' : 'w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-700'
+                isDetailedView ? 'w-8 h-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 mt-0.5' : 'w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-700'
               }`}>
                   {link.icon ? <img src={link.icon} alt="" className="w-5 h-5"/> : link.title.charAt(0)}
               </div>
               
               {/* 标题 */}
-                <h3 className={`text-slate-800 dark:text-slate-200 truncate whitespace-nowrap overflow-hidden text-ellipsis group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors ${
-                  isDetailedView ? 'text-base' : 'text-sm font-medium'
+                <h3 className={`text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-1 min-w-0 ${
+                  isDetailedView ? 'text-base font-semibold leading-snug break-words break-all' : 'text-sm font-medium truncate'
                 }`} title={link.title}>
                     {link.title}
                 </h3>
@@ -1970,7 +1974,7 @@ function App() {
             
             {/* 第二行：描述文字 */}
               {isDetailedView && link.description && (
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed break-words break-all">
                   {link.description}
                 </p>
               )}
@@ -2556,8 +2560,8 @@ function App() {
                             >
                                 <div className={`grid gap-3 ${
                                   siteSettings.cardStyle === 'detailed' 
-                                    ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6' 
-                                    : 'grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8'
+                                    ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3' 
+                                    : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'
                                 }`}>
                                     {pinnedLinks.map(link => (
                                         <SortableLinkCard key={link.id} link={link} />
@@ -2568,8 +2572,8 @@ function App() {
                     ) : (
                         <div className={`grid gap-3 ${
                           siteSettings.cardStyle === 'detailed' 
-                            ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6' 
-                            : 'grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8'
+                            ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3' 
+                            : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'
                         }`}>
                             {pinnedLinks.map(link => renderLinkCard(link))}
                         </div>
@@ -2798,8 +2802,8 @@ function App() {
                             >
                                 <div className={`grid gap-3 ${
                                   siteSettings.cardStyle === 'detailed' 
-                                    ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6' 
-                                    : 'grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8'
+                                    ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3' 
+                                    : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'
                                 }`}>
                                     {displayedLinks.map(link => (
                                         <SortableLinkCard key={link.id} link={link} />
@@ -2810,8 +2814,8 @@ function App() {
                     ) : (
                         <div className={`grid gap-3 ${
                           siteSettings.cardStyle === 'detailed' 
-                            ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6' 
-                            : 'grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8'
+                            ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3' 
+                            : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'
                         }`}>
                             {displayedLinks.map(link => renderLinkCard(link))}
                         </div>
@@ -2853,8 +2857,8 @@ function App() {
 
                         <div className={`grid gap-3 ${
                           siteSettings.cardStyle === 'detailed' 
-                            ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6' 
-                            : 'grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8'
+                            ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3' 
+                            : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'
                         }`}>
                           {links.map(link => renderLinkCard(link))}
                         </div>
